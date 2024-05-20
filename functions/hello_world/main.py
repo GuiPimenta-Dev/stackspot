@@ -1,5 +1,6 @@
 import json
 from dataclasses import dataclass
+import dt_utils
 
 @dataclass
 class Input:
@@ -11,9 +12,13 @@ class Output:
 
 
 def lambda_handler(event, context):
+    
+    message = dt_utils.hello_from_layer()
 
     return {
         "statusCode": 200,
-        "body": json.dumps({"message": "Hello World!"}),
+        "body": json.dumps({"message": message}),
         "headers": {"Access-Control-Allow-Origin": "*"}
     }
+
+lambda_handler(None, None)
